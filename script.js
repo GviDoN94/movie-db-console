@@ -12,7 +12,7 @@
 
 4) Потренироваться и переписать цикл еще двумя способами*/
 
-'use strict';
+"use strict";
 
 const numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
 
@@ -24,12 +24,35 @@ const personalMovieDB = {
   privat: false,
 };
 
-
 for (let i = 0; i < 2; i++) {
-  const a = prompt("Один из последних просмотренных фильмов?", "");
-  const b = prompt("На сколько оцените его?", "");
-  personalMovieDB.movies[a] = b;
+  const lastFilm = prompt("Один из последних просмотренных фильмов?", "");
+  const gradeFilm = prompt("На сколько оцените его?", "");
+  if (
+    lastFilm !== null &&
+    gradeFilm !== null &&
+    lastFilm.length <= 50 &&
+    lastFilm === "" &&
+    gradeFilm === ""
+  ) {
+    personalMovieDB.movies[lastFilm] = gradeFilm;
+    console.log('done');
+  } else {
+    i--;
+    console.log('error');
+  }
 }
+
+if (personalMovieDB.count < 10 && personalMovieDB.count > 0 ) {
+  console.log('Просмотрено довольно мало фильмов');
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+  console.log('Вы классический зритель');
+} else if (personalMovieDB.count >= 30) {
+  console.log('Вы киноман');
+} else {
+  console.log('Произошла ошибка');
+}
+
+console.log(personalMovieDB);
 
 
 console.log(personalMovieDB);
